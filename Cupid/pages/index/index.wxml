@@ -1,0 +1,59 @@
+<view class='cu-custom' style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-white" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class='content' style='top:{{StatusBar}}px;'>广场</view>
+  </view>
+</view>
+
+<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper">
+  <swiper-item wx:for="{{3}}" wx:key class="{{cardCur==index?'cur':''}}" wx:for-item="item" wx:for-index="index" bindtap = 'click'>
+    <view class='bg-img shadow-blur ' style="background-image:url(https://image.weilanwl.com/img/4x3-{{index+1}}.jpg)" id='{{index}}'>
+    <view class='bg-shadeBottom bannarTitle'>
+        <view class='padding-left-sm'>开始</view>
+      </view>
+    </view>
+    
+  </swiper-item>
+</swiper>
+
+<view class="cu-card  case {{isCard?'no-card':''}} bg-gray">
+  <view wx:for="{{2}}" wx:key class="cu-item shadow" style='height:200px;' >
+    <view class='image' style='height:130px'>
+      <image src="https://image.weilanwl.com/img/4x3-1.jpg" mode="center"></image>
+      <view class="cu-tag bg-red">福利</view>
+      <view class='cu-bar bg-shadeBottom'>我和制服不得不说的那些事！</view>
+    </view>
+    <view class="cu-list menu menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url(https://image.weilanwl.com/img/square-4.jpg);"></view>
+        <view class='content flex-sub '>
+          <view class='text-black'>猪皮蛋</view>
+          <view class='text-gray text-sm flex justify-between'>
+            十天前
+            <view class="text-gray text-sm">
+              <text class="icon-attentionfill"></text> 10
+              <text class="icon-appreciatefill"></text> 20
+              <text class="icon-messagefill"></text> 30
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="margin-xl padding-xl bg-white radius shadow-lg">
+  <view class="flex justify-center">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
+    <block wx:else>
+      <view class='text-center'>
+        <view class="cu-avatar xl round solids" style="background-image:url({{userInfo.avatarUrl}})"></view>
+        <view class="padding">{{userInfo.nickName}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="text-center margin-top">
+  <text class="text-grey text-xl">{{motto}}</text>
+</view>

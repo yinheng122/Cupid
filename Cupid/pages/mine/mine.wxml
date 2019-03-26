@@ -1,0 +1,12 @@
+<!-- <view class='cu-custom' style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-white" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class='content' style='top:{{StatusBar}}px;'>我的        </view>
+  </view>
+</view> -->
+<view class='UCenter-bg bg-gradual-orange'>
+  <image src='/images/wode.png' mode='center'></image>
+  <view class='text-xl'>你的名字
+    <text class='text-df'>🏅</text>
+  </view>
+  <image src='https://image.weilanwl.com/gif/wave.gif' mode='scaleToFill' class='gif-wave'></image>
+</view>

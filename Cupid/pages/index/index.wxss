@@ -1,0 +1,8 @@
+.bannarTitle{
+  position:absolute;
+  left:0rpx;
+  bottom:0rpx; 
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+}
