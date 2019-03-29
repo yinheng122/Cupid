@@ -5,9 +5,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "ColorUI",
-    "navigationStyle": "custom",
+    "navigationBarBackgroundColor": "#e54d42",
     "navigationBarTextStyle": "white"
   },
 

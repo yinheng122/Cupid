@@ -10,7 +10,9 @@ Page({
     motto: 'Hi 开发者！',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    dataArr: [],
+    sum: 1,
   },
 
   onLoad: function () {
@@ -40,7 +42,10 @@ Page({
         }
       })
     }
-    
+    var that = this
+    that.getPersonListNetRequest(1)
+
+
   },
 
   getUserInfo: function(e) {
@@ -68,5 +73,62 @@ Page({
   click(e){
     console.log(e.target.id)
   },
+
+  getPersonListNetRequest(num){
+    var that = this
+    var obj = that.data
+    if (num == 1) {
+      obj.dataArr.splice(0, obj.dataArr.length);
+    }
+    const db = wx.cloud.database()
+    const personListDB = db.collection('personList')
+    personListDB.skip((num - 1) * 10).limit(10).get({
+      success: function (res) {
+        console.log(res.data)
+        for (var i = 0; i < res.data.length; i++) {
+          var data = res.data[i]
+          obj.dataArr.push(data)
+        }
+        console.log(obj.dataArr)
+        that.setData({
+          dataArr: obj.dataArr
+        })
+        if (res.data.length < 10) {
+          // wx.showToast({
+          //   title: '数据加载完毕',
+          // })
+          if (sum != 1 && res.data.length < 10) {
+            sum = sum - 1
+          }
+        }
+        if (sum == 1) {
+          wx.stopPullDownRefresh()
+        }
+      }
+    })
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    var that = this
+    that.getPersonListNetRequest(1)
+  },
   
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    var that = this
+    var sum = that.data.sum
+    if (that.data.dataArr.length < 10) {
+      sum = 1
+    } else {
+      sum = sum + 1
+    }
+    that.getPersonListNetRequest(sum)
+  },
+
 })
