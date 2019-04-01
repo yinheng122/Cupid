@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    
+    "brickLayout": "plugin://brickLayout/brickLayout"
   },
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",

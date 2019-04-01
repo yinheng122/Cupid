@@ -13,10 +13,16 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     dataArr: [],
     sum: 1,
+    dataSet:[],
+
   },
 
   onLoad: function () {
+    var that = this
+    that.getUserUniconId()
     if (app.globalData.userInfo) {
+      
+      console.log(app.globalData.userInfo)
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
@@ -25,6 +31,7 @@ Page({
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
+        console.log(res.userInfo)
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
@@ -57,6 +64,39 @@ Page({
     })
   },
 
+getUserUniconId(){
+  wx.cloud.callFunction({
+    name: 'getUserLogin',
+    complete: res => {
+      const db = wx.cloud.database()
+      const accountDB = db.collection('account')
+      var uniconId = res.result.openid
+      console.log(uniconId)
+      accountDB.where({
+        userId: uniconId,
+      }).get({
+        success(res) {
+          console.log(res.data)
+          if(res.data.length<=0){
+            accountDB.add({
+              data: {
+                name: app.globalData.userInfo.nickName,
+                avatar: app.globalData.userInfo.avatarUrl,
+                userId: uniconId,
+                favor: [],
+              },
+            })
+          }
+        },
+        fail(err){
+          console.log(err)
+        }
+      })
+      
+    }
+  })
+},
+
     DotStyle(e) {
     this.setData({
       DotStyle: e.detail.value
@@ -79,6 +119,7 @@ Page({
     var obj = that.data
     if (num == 1) {
       obj.dataArr.splice(0, obj.dataArr.length);
+      obj.dataSet.splice(0, obj.dataSet.length);
     }
     const db = wx.cloud.database()
     const personListDB = db.collection('personList')
@@ -90,8 +131,33 @@ Page({
           obj.dataArr.push(data)
         }
         console.log(obj.dataArr)
+        for(var i=0; i < obj.dataArr.length; i++){
+          var personInfo = obj.dataArr[i]
+          var backgroundColorStr = '#FD5A5D'
+          if(personInfo.sex == '男'){
+            backgroundColorStr = '#2DD0F5'
+          }else{
+            backgroundColorStr = '#FF898F'
+          }
+          var time = new Date(personInfo.createTime.replace(/-/g, "/")).getTime()
+          time = time/1000
+          var dic = {
+            id: personInfo._id,
+            content:'姓名:' + personInfo.name + '\n' + personInfo.age + '岁' + '(' + personInfo.introduce + ')',
+            time: time,
+            likedCount:personInfo.watchNum,
+            backgroundColor: backgroundColorStr,
+            user: {
+              avatar: personInfo.editorIcon,
+              username: personInfo.editor,
+            },
+            images: personInfo.image
+          }
+          obj.dataSet.push(dic) 
+        }
         that.setData({
-          dataArr: obj.dataArr
+          dataArr: obj.dataArr,
+          dataSet: obj.dataSet
         })
         if (res.data.length < 10) {
           // wx.showToast({
@@ -129,6 +195,20 @@ Page({
       sum = sum + 1
     }
     that.getPersonListNetRequest(sum)
+  },
+
+  personDetailAct(e){
+    var personID = e.currentTarget.id
+    wx.navigateTo({
+      url: '/pages/personDetail/personDetail?ID=' + personID,
+    })
+  },
+
+  tapCard: function (event) {
+    var personID = event.detail.card_id
+    wx.navigateTo({
+      url: '/pages/personDetail/personDetail?ID=' + personID,
+    })
   },
 
 })

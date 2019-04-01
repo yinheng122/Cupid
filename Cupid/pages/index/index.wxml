@@ -15,11 +15,17 @@
   </swiper-item>
 </swiper>
 
-<view class="cu-card  case {{isCard?'no-card':''}} bg-gray">
-  <view wx:for="{{dataArr}}" wx:key class="cu-item shadow" style='height:200px;' wx:for-item="item" wx:for-index="idx">
-    <view class='image' style='height:130px'>
-      <image src="{{item.image[0]}}" mode="center"></image>
-      <view class="cu-tag bg-red">福利</view>
+<brickLayout
+  dataSet="{{dataSet}}"
+  option="{{brick_option}}"
+  bind:tapCard="tapCard"
+/>
+
+<!-- <view class="cu-card  case {{isCard?'no-card':''}} bg-gray">
+  <view wx:for="{{dataArr}}" wx:key class="cu-item shadow" style='height:250px;' wx:for-item="item" wx:for-index="idx" bindtap='personDetailAct' id='{{item._id}}'>
+    <view class='image' style='height:180px'>
+      <image src="{{item.avatar}}" mode="aspectFill"></image>
+      <view class="cu-tag bg-red">加急</view>
       <view class='cu-bar bg-shadeBottom text-xxl'>{{item.name}}-{{item.age}}岁<text class='{{item.sex == "男"?"icon-male text-blue":"icon-female text-red"}}'></text></view>
     </view>
     <view class="cu-list menu menu-avatar">
@@ -37,10 +43,10 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->
 
 
-<view class="margin-xl padding-xl bg-white radius shadow-lg">
+<!-- <view class="margin-xl padding-xl bg-white radius shadow-lg">
   <view class="flex justify-center">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
     <block wx:else>
@@ -54,4 +60,4 @@
 
 <view class="text-center margin-top">
   <text class="text-grey text-xl">{{motto}}</text>
-</view>
+</view> -->

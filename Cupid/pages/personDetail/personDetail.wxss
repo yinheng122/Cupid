@@ -1,0 +1,50 @@
+.PD_header{
+  width: 100%;
+  height: 250rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.PD_headerImage{
+  width: 150rpx;
+  height: 150rpx;
+  border: 6rpx;
+  border-color: white;
+  border-style: solid;
+}
+.PD_backRedHeaderColor{
+  background: linear-gradient(#FD5A5D,#DF6791);
+}
+.PD_backBlueHeaderColor{
+  background: linear-gradient(#166CF1,#14B9FA);
+}
+.PD_detailBlueContentView{
+  background: linear-gradient(#14B9FA,rgb(114, 210, 248)); 
+  height: 1500rpx;
+  width: 100%;
+}
+.PD_detailRedContentView{
+  background: linear-gradient(#DF6791,rgb(219, 66, 120)); 
+  height: 1500rpx;
+  width: 100%;
+}
+.PD_intorduce{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.PD_imageList{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  flex-wrap:wrap;
+}
+.PD_imageItem{
+  width: 44%;
+  margin-left: 4%;
+  margin-top: 4%;
+  height: 300rpx;
+  border-radius: 10px;
+}

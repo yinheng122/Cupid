@@ -1,0 +1,47 @@
+<view class = 'PD_header {{backViewColor}}' mode='widthFix'>
+  <image class = 'PD_headerImage shadow round' src = '{{personInfo.avatar}}'></image>
+  <view class='text-xl text-white'>{{personInfo.name}}
+    <text class='text-df'>{{personInfo.age}}岁</text>
+    </view>
+</view>
+<view class= '{{backDetailView}}'>
+<view class="cu-list menu card-menu shadow-lg">
+  <view class="cu-item">
+      <text class='icon-footprint text-grey'>身高</text>
+      <text class='text-grey'>{{personInfo.height}}cm</text>
+    </view>
+    <view class="cu-item">
+      <text class='icon-medal text-grey'>学历</text>
+      <text class='text-grey'>{{personInfo.education}}</text>
+    </view>
+    <view class="cu-item">
+      <text class='icon-profile text-grey'>职业</text>
+      <text class='text-grey'>{{personInfo.career}}</text>
+    </view>
+    <view class="cu-item">
+      <text class='icon-form text-grey'>家庭条件</text>
+      <text class='text-grey'>{{personInfo.condition}}</text>
+    </view>
+    <view class="cu-item">
+      <text class='icon-favor text-grey'>爱好</text>
+      <text class='text-grey'>{{personInfo.favor}}</text>
+    </view>
+</view>
+<view class="menu card-menu shadow-lg padding" >
+  <view class="bg-white padding"  style='border-radius: 10px'>
+      <text class='icon-info text-red' style='width:120px;'>详细情况</text>
+      <text class='text-grey' style='width:70%; margin-left:15px;'>{{personInfo.introduce}}</text>
+  </view>
+</view>
+
+<view class='flex justify-start' style='margin-top:15px; margin-left:15px;'>
+  <view class='icon-picfill text-white'>
+  生活照
+  </view>
+</view>
+
+<view class='PD_imageList'>
+  <image wx:for='{{personInfo.image}}' wx:key wx:for-item="item" wx:for-index="idx" src='{{item}}' class='PD_imageItem shadow' mode='aspectFill' bindtap='imagePreview' id='{{item}}'></image>
+</view>
+
+</view>
