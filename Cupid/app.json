@@ -2,9 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/mine/mine",
-    "pages/personDetail/personDetail"
+    "pages/personDetail/personDetail",
+    "pages/myFavor/myFavor"
   ],
-
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "white",

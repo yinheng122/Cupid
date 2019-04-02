@@ -66,5 +66,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  myFavorAct(){
+    wx.navigateTo({
+      url: '/pages/myFavor/myFavor',
+    })
   }
 })

@@ -14,7 +14,7 @@ Page({
     dataArr: [],
     sum: 1,
     dataSet:[],
-
+    brick_option: { defaultExpandStatus: true, fontColor: "#232323"}
   },
 
   onLoad: function () {
@@ -135,9 +135,10 @@ getUserUniconId(){
           var personInfo = obj.dataArr[i]
           var backgroundColorStr = '#FD5A5D'
           if(personInfo.sex == '男'){
-            backgroundColorStr = '#2DD0F5'
+            backgroundColorStr = '#B5ECFF'
+            // backgroundColorStr = '#2DD0F5'
           }else{
-            backgroundColorStr = '#FF898F'
+            backgroundColorStr = '#FDC3E7'
           }
           var time = new Date(personInfo.createTime.replace(/-/g, "/")).getTime()
           time = time/1000
@@ -151,7 +152,7 @@ getUserUniconId(){
               avatar: personInfo.editorIcon,
               username: personInfo.editor,
             },
-            images: personInfo.image
+            images: [personInfo.image[0]]
           }
           obj.dataSet.push(dic) 
         }

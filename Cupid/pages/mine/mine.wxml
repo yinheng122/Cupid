@@ -12,28 +12,28 @@
 </view>
 <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
   <view class="cu-item arrow">
-    <view class='content' bindtap='CopyLink' data-link='https://github.com/weilanwl/ColorUI'>
+    <button class='cu-btn content' bindtap='CopyLink' data-link='https://github.com/weilanwl/ColorUI'>
       <text class='icon-friendadd text-red'></text>
       <text class='text-grey'>添加萌新</text>
-    </view>
+    </button>
   </view>
   <view class="cu-item arrow">
-    <navigator class='content' url='../about/about' hover-class='none'>
+    <button class='cu-btn content' bindtap='myFavorAct'>
       <text class='icon-favor text-red'></text>
       <text class='text-grey'>我的关注</text>
-    </navigator>
+    </button>
   </view>
   <view class="cu-item arrow">
-    <navigator class='content' url='../log/log' hover-class='none'>
-      <text class='icon-message text-red'></text>
-      <text class='text-grey'>我的消息</text>
-    </navigator>
+    <button class='cu-btn content'>
+      <text class='icon-circle text-red'></text>
+      <text class='text-grey'>红娘圈子</text>
+    </button>
   </view>
   <view class="cu-item arrow">
-    <view class='content' bindtap="showQrcode">
+    <button class='cu-btn content' bindtap="showQrcode">
       <text class='icon-settings text-red'></text>
       <text class='text-grey'>功能设置</text>
-    </view>
+    </button>
   </view>
   <view class="cu-item arrow">
     <button class='cu-btn content' open-type='feedback'>
