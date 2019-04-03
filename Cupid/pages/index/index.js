@@ -76,7 +76,6 @@ getUserUniconId(){
         userId: uniconId,
       }).get({
         success(res) {
-          console.log(res.data)
           if(res.data.length<=0){
             accountDB.add({
               data: {
@@ -84,7 +83,28 @@ getUserUniconId(){
                 avatar: app.globalData.userInfo.avatarUrl,
                 userId: uniconId,
                 favor: [],
+                friend:[],
+                level:"新人红娘"
               },
+              success:function(res){
+                wx.cloud.callFunction({
+                  name: 'getUserID',
+                  complete: res => {
+                    console.log(res)
+                    var userID = res.result.userID
+                    app.globalData.userID = userID
+                  }
+                })
+              }
+            })
+          }else{
+            wx.cloud.callFunction({
+              name: 'getUserID',
+              complete: res => {
+                console.log(res)
+                var userID = res.result.userID
+                app.globalData.userID = userID
+              }
             })
           }
         },
@@ -96,6 +116,10 @@ getUserUniconId(){
     }
   })
 },
+  
+  getUserIDRequest(){
+    
+  },
 
     DotStyle(e) {
     this.setData({

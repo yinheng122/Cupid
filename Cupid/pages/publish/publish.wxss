@@ -1,0 +1,9 @@
+/* pages/publish/publish.wxss */
+.backColor_male{
+  background-color: #B5ECFF;
+  overflow: hidden;
+}
+.backColor_female{
+  background-color: #FDC3E7;
+  overflow: hidden;
+}

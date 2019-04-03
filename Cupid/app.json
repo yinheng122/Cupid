@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/mine/mine",
     "pages/personDetail/personDetail",
-    "pages/myFavor/myFavor"
+    "pages/myFavor/myFavor",
+    "pages/circle/circle",
+    "pages/publish/publish"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,35 @@
+<!--pages/circle/circle.wxml-->
+<scroll-view scroll-x class="circle_scroll nav text-center">
+  <view class="cu-item {{0==TabCur?'text-white cur':'text-gray'}} text-xl" bindtap='tabSelect' data-id="0">
+    <text class='icon-group'></text> 全部
+  </view>
+  <view class="cu-item {{1==TabCur?'text-white cur':'text-gray'}} text-xl" bindtap='tabSelect' data-id="1">
+    <text class='icon-friendfamous'></text> 好友
+  </view>
+</scroll-view>
+<view wx:if="{{TabCur == 0}}" wx:for = '{{dataArr}}' wx:key wx:for-item="item" wx:for-index="index" id='{{item._id}}' class="cu-list menu menu-avatar solid-bottom">
+        <view class="cu-item">
+          <image class="cu-avatar round lg" src='{{item.avatar}}' bindtap='publishAct' id='{{item._openid}}'></image>
+          <view class='content' bindtap='publishAct' id='{{item._openid}}'>
+            <view class='text-black text-lg'>{{item.name}}</view>
+            <view class='text-gray text-sm'><text wx:if='{{item.level == "管理员"}}' class='icon-crownfill text-yellow'></text><text wx:else class='icon-medalfill text-yellow'></text>{{item.level}}</view>
+          </view>
+          <view class='action'>
+            <text class='icon-favor text-gray' wx:if = '{{isFriendArr[index] == "0"}}' bindtap='addFriendAct' id='{{item._id}}'></text>
+            <text class='icon-favorfill text-yellow' wx:else bindtap='deleteFriendAct' id='{{item._id}}'></text>
+          </view>
+        </view>
+</view>
+
+<view wx:if = '{{TabCur != 0}}' wx:for = '{{friendDataArr}}' wx:key wx:for-item="item" wx:for-index="index" id='{{item._id}}' class="cu-list menu menu-avatar solid-bottom">
+        <view class="cu-item">
+          <image class="cu-avatar round lg" src='{{item.avatar}}' bindtap='publishAct' id='{{item._openid}}'></image>
+          <view class='content' bindtap='publishAct' id='{{item._openid}}'>
+            <view class='text-black text-lg'>{{item.name}}</view>
+            <view class='text-gray text-sm'><text wx:if='{{item.level == "管理员"}}' class='icon-crownfill text-yellow'></text><text wx:else class='icon-medalfill text-yellow'></text>{{item.level}}</view>
+          </view>
+          <view class='action'>
+            <text class='icon-favorfill text-yellow' bindtap='deleteFriendAct' id='{{item._id}}'></text>
+          </view>
+        </view>
+</view>

@@ -24,7 +24,7 @@
     </button>
   </view>
   <view class="cu-item arrow">
-    <button class='cu-btn content'>
+    <button class='cu-btn content' bindtap='circleAct'>
       <text class='icon-circle text-red'></text>
       <text class='text-grey'>红娘圈子</text>
     </button>

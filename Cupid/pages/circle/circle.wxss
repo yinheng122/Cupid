@@ -1,0 +1,4 @@
+/* pages/circle/circle.wxss */
+.circle_scroll{
+  background: linear-gradient(#FD5A5D,rgb(233, 46, 62));
+}

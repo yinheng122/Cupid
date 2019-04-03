@@ -1,22 +1,32 @@
-// pages/mine/mine.js
-//获取应用实例
-const app = getApp()
-
+// pages/publish/publish.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
+    dataArr:[],
+    backColor:'backColor_male'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var userId = options.ID
+    var that = this
+    const db = wx.cloud.database()
+    const personListDB = db.collection('personList')
+    personListDB.where({
+      _openid:userId
+    }).get({
+      success:function(res){
+        console.log(res)
+        that.setData({
+          dataArr:res.data
+        })
+      }
+    })
   },
 
   /**
@@ -66,17 +76,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  myFavorAct(){
-    wx.navigateTo({
-      url: '/pages/myFavor/myFavor',
-    })
-  },
-
-  circleAct(){
-    wx.navigateTo({
-      url: '/pages/circle/circle',
-    })
   }
 })
