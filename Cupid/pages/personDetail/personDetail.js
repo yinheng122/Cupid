@@ -1,4 +1,7 @@
 // pages/personDetail/personDetail.js
+var favorArr = new Array()
+var personIDStr = new String() 
+const app = getApp()
 Page({
 
   /**
@@ -8,6 +11,7 @@ Page({
     personInfo:{},
     backViewColor:'PD_backRedHeaderColor',
     backDetailView:'PD_detailRedContentView',
+    favorOrNot:'1',
   },
 
   /**
@@ -16,6 +20,7 @@ Page({
   onLoad: function (options) {
     var that = this
     var personID = options.ID;
+    personIDStr = personID
     const db = wx.cloud.database()
     const personListDB = db.collection('personList')
     personListDB.doc(personID).get({
@@ -54,6 +59,22 @@ Page({
           personInfo:res.data
         })
       }
+    })
+
+    wx.cloud.callFunction({
+      name: 'getUserFavor',
+      complete: res => {
+        var favorIdArr = res.result.userFavor
+        if(favorIdArr.indexOf(personID) <= -1){
+          that.setData({
+            favorOrNot:'0'
+          })
+        }else{
+          that.setData({
+            favorOrNot: '1'
+          })
+        }
+    }
     })
   },
 
@@ -112,6 +133,51 @@ Page({
     wx.previewImage({
       current: url, // 当前显示图片的http链接
       urls: personInfo.image // 需要预览的图片http链接列表
+    })
+  },
+
+  addFavorAct(){
+    wx.showLoading({
+      title: '',
+    })
+    var that = this
+    const db = wx.cloud.database()
+    const accountDB = db.collection('account')
+    favorArr.push(personIDStr)
+    accountDB.doc(app.globalData.userID).update({
+      data: {
+        favor: favorArr
+      },
+      success(res) {
+        wx.hideLoading()
+        that.setData({
+          favorOrNot:"1"
+        })
+      }
+    })
+  },
+
+  deleteFavorAct(){
+    wx.showLoading({
+      title: '',
+    })
+    var that = this
+    const db = wx.cloud.database()
+    const accountDB = db.collection('account')
+    var index = favorArr.indexOf(personIDStr);
+    if (index > -1) {
+      favorArr.splice(index, 1);
+    } 
+    accountDB.doc(app.globalData.userID).update({
+      data: {
+        favor: favorArr
+      },
+      success(res) {
+        wx.hideLoading()
+        that.setData({
+          favorOrNot: "0"
+        })
+      }
     })
   }
 })

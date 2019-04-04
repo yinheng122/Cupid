@@ -115,6 +115,7 @@ Page({
           _id: db.command.in(userFriendArr)
         }).get({
           success: function (res) {
+            wx.hideLoading()
             console.log(res)
             that.setData({
               friendDataArr: res.data
@@ -147,6 +148,9 @@ Page({
   },
 
   addFriendAct(e){
+    wx.showLoading({
+      title: '',
+    })
     var that = this
     var friendArr = that.data.friendArr
     friendArr.push(e.currentTarget.id)
@@ -165,6 +169,9 @@ Page({
   },
 
   deleteFriendAct(e){
+    wx.showLoading({
+      title: '',
+    })
     var that = this
     var friendArr = that.data.friendArr
     var index = friendArr.indexOf(e.currentTarget.id);

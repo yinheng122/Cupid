@@ -15,8 +15,8 @@
             <view class='text-gray text-sm'><text wx:if='{{item.level == "管理员"}}' class='icon-crownfill text-yellow'></text><text wx:else class='icon-medalfill text-yellow'></text>{{item.level}}</view>
           </view>
           <view class='action'>
-            <text class='icon-favor text-gray' wx:if = '{{isFriendArr[index] == "0"}}' bindtap='addFriendAct' id='{{item._id}}'></text>
-            <text class='icon-favorfill text-yellow' wx:else bindtap='deleteFriendAct' id='{{item._id}}'></text>
+            <text class='icon-favor text-gray text-xl' wx:if = '{{isFriendArr[index] == "0"}}' bindtap='addFriendAct' id='{{item._id}}'></text>
+            <text class='icon-favorfill text-yellow text-xl' wx:else bindtap='deleteFriendAct' id='{{item._id}}'></text>
           </view>
         </view>
 </view>
@@ -29,7 +29,7 @@
             <view class='text-gray text-sm'><text wx:if='{{item.level == "管理员"}}' class='icon-crownfill text-yellow'></text><text wx:else class='icon-medalfill text-yellow'></text>{{item.level}}</view>
           </view>
           <view class='action'>
-            <text class='icon-favorfill text-yellow' bindtap='deleteFriendAct' id='{{item._id}}'></text>
+            <text class='icon-favorfill text-yellow text-xl' bindtap='deleteFriendAct' id='{{item._id}}'></text>
           </view>
         </view>
 </view>

@@ -1,0 +1,4 @@
+/* pages/meetMrRight/meetMrRight.wxss */
+.meet_backImage{
+  width: 100%;
+}

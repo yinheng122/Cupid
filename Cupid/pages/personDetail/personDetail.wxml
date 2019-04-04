@@ -44,4 +44,9 @@
   <image wx:for='{{personInfo.image}}' wx:key wx:for-item="item" wx:for-index="idx" src='{{item}}' class='PD_imageItem shadow' mode='aspectFill' bindtap='imagePreview' id='{{item}}'></image>
 </view>
 
+<view class="padding flex flex-direction">
+  <button wx:if='{{favorOrNot == "0"}}' class='cu-btn bg-yellow lg text-white' bindtap='addFavorAct'>添加关注</button>
+  <button wx:else class='cu-btn bg-gray lg text-black' bindtap='deleteFavorAct'>取消关注</button>
+</view>
+
 </view>

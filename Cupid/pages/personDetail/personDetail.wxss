@@ -21,12 +21,12 @@
 }
 .PD_detailBlueContentView{
   background: linear-gradient(#14B9FA,rgb(114, 210, 248)); 
-  height: 1500rpx;
+  /* height: 1500rpx; */
   width: 100%;
 }
 .PD_detailRedContentView{
   background: linear-gradient(#DF6791,rgb(219, 66, 120)); 
-  height: 1500rpx;
+  /* height: 1500rpx; */
   width: 100%;
 }
 .PD_intorduce{

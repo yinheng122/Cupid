@@ -5,7 +5,9 @@
     "pages/personDetail/personDetail",
     "pages/myFavor/myFavor",
     "pages/circle/circle",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/meetMrRight/meetMrRight",
+    "pages/meetResult/meetResult"
   ],
   "window": {
     "backgroundTextStyle": "light",

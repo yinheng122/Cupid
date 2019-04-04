@@ -236,4 +236,9 @@ getUserUniconId(){
     })
   },
 
+  meetMrRightAct(){
+    wx.navigateTo({
+      url: '/pages/meetMrRight/meetMrRight',
+    })
+  }
 })

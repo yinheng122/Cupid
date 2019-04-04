@@ -1,0 +1,4 @@
+<image src='/images/loading.gif' mode = 'widthFix' class='meet_backImage'></image>
+<view class='flex justify-center text-xxl' style='width:100%;'>
+  <text class='icon-wefill text-red'>正在帮你匹配心仪的对象...</text>
+</view>

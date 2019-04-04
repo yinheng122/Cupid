@@ -4,13 +4,13 @@
   </view>
 </view> -->
 
-<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper">
+<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" circular="true" autoplay="false" bindchange="cardSwiper">
   <swiper-item wx:for="{{3}}" wx:key class="{{cardCur==index?'cur':''}}" wx:for-item="item" wx:for-index="index" bindtap = 'click'>
-    <view class='bg-img shadow-blur ' style="background-image:url(https://image.weilanwl.com/img/4x3-{{index+1}}.jpg)" id='{{index}}'>
+    <image class='bg-img shadow-blur ' mode = 'aspectFill' src='/images/banar.gif' id='{{index}}' bindtap='meetMrRightAct'>
     <view class='bg-shadeBottom bannarTitle'>
-        <view class='padding-left-sm'>开始</view>
+        <view class='padding-left-sm'>Meet Mr Right——找到那个属于他的她</view>
       </view>
-    </view>
+    </image>
     
   </swiper-item>
 </swiper>

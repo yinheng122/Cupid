@@ -1,0 +1,4 @@
+/* pages/meetResult/meetResult.wxss */
+.meet_backImage{
+  width: 100%;
+}
