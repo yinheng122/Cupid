@@ -3,16 +3,17 @@
     <view class='content' style='top:{{StatusBar}}px;'>我的        </view>
   </view>
 </view> -->
+<view wx:if="{{hasUserInfo && canIUse}}">
 <view class='UCenter-bg bg-gray'>
-  <image src='/images/wode.png' mode='center'></image>
-  <view class='text-xl mineNickNameTitle'>你的名字
-    <text class='text-df'>🏅</text>
+  <image src='{{userInfo.avatarUrl}}' class='cu-avatar round mine_avatar shadow-blur' mode='aspectFill'></image>
+  <view class='text-xl mineNickNameTitle'>{{userInfo.nickName}}
+    <text class='text-df'></text>
   </view>
   <image src='https://image.weilanwl.com/gif/wave.gif' mode='scaleToFill' class='gif-wave'></image>
 </view>
 <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
   <view class="cu-item arrow">
-    <button class='cu-btn content' bindtap='CopyLink' data-link='https://github.com/weilanwl/ColorUI'>
+    <button class='cu-btn content' bindtap='addPerson'>
       <text class='icon-friendadd text-red'></text>
       <text class='text-grey'>添加萌新</text>
     </button>
@@ -42,4 +43,10 @@
     </button>
   </view>
 </view>
+</view>
 
+<view wx:else class='loginView bg-gray' style='height:{{windowHeight}}rpx'>
+  <image class='loginImage round' src='/images/Cupid.jpg'></image>
+  <text class='text-grey text-xl' style='margin-top:15px;'>红娘丘比特需要您登录~</text>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-red lg shadow' style='margin-top:15px;'> 登录</button>
+</view>

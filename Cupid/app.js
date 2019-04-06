@@ -49,6 +49,9 @@ App({
         let custom = wx.getMenuButtonBoundingClientRect();
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+        this.globalData.systemInfo = e;
+        this.globalData.windowHeight = e.windowHeight / (e.windowWidth / 750);
+        this.globalData.screenHeight = e.screenHeight / (e.screenWidth / 750);
       }
     })
   },

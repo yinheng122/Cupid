@@ -1,0 +1,68 @@
+<view class = 'add_backView {{backgroudColor}}' style='height:{{screenHeight}}rpx'>
+  <view class="flex padding align-center justify-between">
+      <image class="cu-avatar round add_avatar bg-white" src = '{{avatarUrl}}' bindtap='addAvatarAct'></image>
+      
+        <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+        <view class='padding-sm picker'>{{sexStr}}
+        </view>  
+        </picker>
+      
+  </view>
+  <form class='cu-list menu card-menu shadow-lg'>
+    <view class="cu-form-group">
+      <view class="title text-red">姓名</view>
+      <input placeholder="请输入姓名" bindblur = 'nameInputAct'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-red">年龄</view>
+      <input placeholder="请输入年龄" bindblur = 'ageInputAct'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-black">身高</view>
+      <input placeholder="请输入身高" bindblur = 'heightInputAct'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-black">职业</view>
+      <input placeholder="请输入职业" bindblur = 'careerInputAct'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-black">家庭</view>
+      <input placeholder="请输入家庭状况" bindblur = 'familyInputAct'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-black">学历</view>
+      <input placeholder="请输入学历" bindblur = 'educationInputAct'></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-black">兴趣</view>
+      <input placeholder="请输入兴趣" bindblur = 'favorInputAct'></input>
+    </view>
+  </form>
+
+  <form class='cu-list menu card-menu shadow-lg'>
+    <view class="cu-form-group top">
+      <view class="title text-red">详细情况</view>
+      <textarea data-placeholder="请输入详细情况" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{textareaAValue?'value':''}} text-grey" bindinput="textareaAInput"></textarea>
+    </view>
+  </form>
+  
+  <form class='cu-list menu card-menu shadow-lg add_chooseImage bg-white'>
+    <view class="flex justify-start padding ">
+    <view wx:for="{{imgList}}" wx:key="{{index}}">
+    <image class="add_imageView"  bindtap="scanPersonImage" src="{{imgList[index]}}">
+      </image>
+      <view class="bg-red add_deleteImage text-center" wx:for="{{imgList}}" catchtap="DelImg" data-index="{{index}}">
+          <text class="icon-close"></text>
+        </view>
+    </view>
+      
+      <view class="flex add_imageView solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+      <image class="add_cameraImage" src = '/images/camera.png'></image>
+      </view>
+    </view>
+  </form>
+
+  <view class="padding flex flex-direction">
+  <button class="cu-btn {{certainBtnColor}} lg" bindtap='certainAct'>确认添加</button>
+</view>
+</view>
