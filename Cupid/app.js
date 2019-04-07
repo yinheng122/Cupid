@@ -26,7 +26,7 @@ App({
               this.globalData.userInfo = res.userInfo
               var that = this
               wx.cloud.callFunction({
-                name: 'getUserIDRequest',
+                name: 'getUserID',
                 complete: res => {
                   var userID = res.result.userID
                   that.globalData.userID = userID
@@ -57,6 +57,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    userID:null
+    userID:null,
+    userOpenID:null
   }
 })

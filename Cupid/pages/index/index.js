@@ -71,6 +71,7 @@ getUserUniconId(){
       const db = wx.cloud.database()
       const accountDB = db.collection('account')
       var uniconId = res.result.openid
+      app.globalData.userOpenID = uniconId
       console.log(uniconId)
       accountDB.where({
         userId: uniconId,

@@ -128,5 +128,11 @@ Page({
     wx.navigateTo({
       url: '/pages/addPerson/addPerson',
     })
+  },
+
+  personHistoryAct(){
+    wx.navigateTo({
+      url: '/pages/personHistory/personHistory',
+    })
   }
 })

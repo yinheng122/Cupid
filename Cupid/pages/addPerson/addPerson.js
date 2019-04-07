@@ -293,7 +293,6 @@ Page({
             })
             that.certainRequest()
           }
-          
         },
         fail: err => {
           wx.hideLoading()
@@ -329,6 +328,7 @@ Page({
         introduce:obj.textareaAValue,
         watchNum:"0",
         image:obj.imagesUrlArr,
+        emergency:"1"
       },
       success(res) {
         wx.hideLoading()

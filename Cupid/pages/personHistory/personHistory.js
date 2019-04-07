@@ -1,29 +1,31 @@
-// pages/publish/publish.js
+// pages/personHistory/personHistory.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    dataArr:[],
-    backColor:'backColor_male'
+    dataArr: [],
+    backColor: 'backColor_male'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var userId = options.ID
+    var openID = app.globalData.userOpenID
     var that = this
     const db = wx.cloud.database()
     const personListDB = db.collection('personList')
+    console.log(openID)
     personListDB.where({
-      _openid:userId
+      _openid: openID
     }).get({
-      success:function(res){
+      success: function (res) {
         console.log(res)
         that.setData({
-          dataArr:res.data
+          dataArr: res.data
         })
       }
     })
@@ -80,7 +82,7 @@ Page({
 
   personDetailAct(e){
     wx.navigateTo({
-      url: '/pages/personDetail/personDetail?ID=' + e.currentTarget.id,
+      url: '/pages/personDetail/personDetail?ID='+ e.currentTarget.id,
     })
   }
 })
