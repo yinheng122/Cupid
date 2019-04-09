@@ -126,7 +126,7 @@ Page({
 
   addPerson(){
     wx.navigateTo({
-      url: '/pages/addPerson/addPerson',
+      url: '/pages/addNewGuys/addNewGuys',
     })
   },
 

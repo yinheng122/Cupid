@@ -1,6 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarBackgroundColor": "#508AEA",
+  "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTitleText": "匹配结果",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "black"
 }

@@ -14,12 +14,27 @@ Page({
     dataArr: [],
     sum: 1,
     dataSet:[],
-    brick_option: { defaultExpandStatus: true, fontColor: "#232323"}
+    brick_option: { defaultExpandStatus: true, fontColor: "#232323"},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+  },
+
+  getUserInfo: function (e) {
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true,
+      canIUse: true
+    })
   },
 
   onLoad: function () {
     var that = this
     that.getUserUniconId()
+    this.setData({
+      windowHeight: app.globalData.windowHeight + 125,
+      screenHeight: app.globalData.screenHeight + 125
+    })
     if (app.globalData.userInfo) {
       
       console.log(app.globalData.userInfo)

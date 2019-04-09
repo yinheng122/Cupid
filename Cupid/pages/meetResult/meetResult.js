@@ -12,7 +12,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var age = options.age
+    var height = options.height
+    var sex = options.sex
+    var ageArr = new Array()
+    var heightArr = new Array()
+    var ageInt = parseInt(age)
+    var heightInt = parseInt(height)
+    for(var i = 0; i < 6; i++){
 
+    }
   },
 
   /**

@@ -88,7 +88,7 @@ Page({
   meetRightGayAct(){
     var that = this
     wx.navigateTo({
-      url: '/pages/meetResult/meetResult',
+      url: '/pages/meetResult/meetResult?sex='+that.data.sex + '&age=' + age + '&height=' + height,
     })
   },
 

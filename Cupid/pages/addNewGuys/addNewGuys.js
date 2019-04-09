@@ -1,4 +1,3 @@
-// pages/addPerson/addPerson.js
 var util = require('../../utils/util.js')
 const app = getApp()
 Page({
@@ -12,20 +11,20 @@ Page({
     modalName: null,
     textareaAValue: '',
     imgList: [],
-    avatarUrl:"/images/addImage.png",
-    nameStr:'',
-    ageStr:'',
-    heightStr:'',
-    careerStr:'',
-    familyStr:'',
-    educationStr:'',
-    favorStr:'',
-    sexStr:'点击选择性别',
+    avatarUrl: "/images/addImage.png",
+    nameStr: '',
+    ageStr: '',
+    heightStr: '',
+    careerStr: '',
+    familyStr: '',
+    educationStr: '',
+    favorStr: '',
+    sexStr: '点击选择性别',
     picker: ['男', '女'],
-    backgroudColor:'bg-gray',
-    certainBtnColor:'bg-red',
-    userInfo:{},
-    imagesUrlArr:[]
+    backgroudColor: 'bg-gray',
+    certainBtnColor: 'bg-red',
+    userInfo: {},
+    imagesUrlArr: []
   },
 
   /**
@@ -97,7 +96,7 @@ Page({
     })
   },
 
-  scanPersonImage(e){
+  scanPersonImage(e) {
     wx.previewImage({
       urls: this.data.imgList,
       current: e.currentTarget.dataset.url
@@ -139,8 +138,8 @@ Page({
       }
     })
   },
-  
-  addAvatarAct(){
+
+  addAvatarAct() {
     wx.chooseImage({
       count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
@@ -155,72 +154,72 @@ Page({
 
   PickerChange(e) {
     console.log(e);
-    if(e.detail.value == 0){
+    if (e.detail.value == 0) {
       this.setData({
         backgroudColor: 'bg-gradual-blue',
         certainBtnColor: 'bg-red'
       })
-    }else{
+    } else {
       this.setData({
         backgroudColor: 'bg-gradual-red',
         certainBtnColor: 'bg-blue'
       })
     }
-    var sexStr = this.data.picker[e.detail.value] 
+    var sexStr = this.data.picker[e.detail.value]
     this.setData({
       sexStr: sexStr
     })
   },
 
-  nameInputAct(e){
+  nameInputAct(e) {
     this.setData({
-      nameStr:e.detail.value
+      nameStr: e.detail.value
     })
   },
 
-  ageInputAct(e){
+  ageInputAct(e) {
     this.setData({
       ageStr: e.detail.value
     })
   },
 
-  heightInputAct(e){
+  heightInputAct(e) {
     this.setData({
       heightStr: e.detail.value
     })
   },
 
-  careerInputAct(e){
+  careerInputAct(e) {
     this.setData({
       careerStr: e.detail.value
     })
   },
 
-  familyInputAct(e){
+  familyInputAct(e) {
     this.setData({
       familyStr: e.detail.value
     })
   },
 
-  educationInputAct(e){
+  educationInputAct(e) {
     this.setData({
       educationStr: e.detail.value
     })
   },
 
-  favorInputAct(e){
+  favorInputAct(e) {
     this.setData({
       favorStr: e.detail.value
     })
   },
 
-  certainAct(){
+  certainAct() {
     var that = this
     var obj = that.data
-    if(obj.avatarUrl.length <= 0){
+    if (obj.avatarUrl.length <= 0) {
       wx.showToast({
         title: '请添加用户头像',
-        icon:'none'
+        icon: 'none'
       })
       return
     }
@@ -231,7 +230,7 @@ Page({
       })
       return
     }
-    if(obj.nameStr.length <= 0){
+    if (obj.nameStr.length <= 0) {
       wx.showToast({
         title: '请填写姓名',
         icon: 'none'
@@ -269,19 +268,19 @@ Page({
         wx.hideLoading()
         wx.showToast({
           title: '头像上传失败',
-          icon:'none'
+          icon: 'none'
         })
       }
     })
   },
 
-  uploadImgListRequest(){
+  uploadImgListRequest() {
     var that = this
     var obj = that.data
     let timestamp = Date.parse(new Date())
     var sum = 0
     var imagesArr = new Array()
-    if(obj.imgList.length != 0){
+    if (obj.imgList.length != 0) {
       for (var i = 0; i < obj.imgList.length; i++) {
         wx.cloud.uploadFile({
           cloudPath: timestamp + i + '_imgList.png',
@@ -305,13 +304,13 @@ Page({
           }
         })
       }
-    }else{
+    } else {
       that.certainRequest()
     }
-    
+
   },
 
-  certainRequest(){
+  certainRequest() {
     var that = this
     var obj = that.data
     const db = wx.cloud.database()
@@ -326,38 +325,39 @@ Page({
         career: obj.careerStr,
         favor: obj.favorStr,
         condition: obj.familyStr,
-        editor:obj.userInfo.nickName,
+        editor: obj.userInfo.nickName,
         editorIcon: obj.userInfo.avatarUrl,
-        avatar:obj.avatarUrl,
+        avatar: obj.avatarUrl,
         createTime: createTime,
-        height:obj.heightStr,
-        introduce:obj.textareaAValue,
-        watchNum:"0",
-        image:obj.imagesUrlArr,
+        height: obj.heightStr,
+        introduce: obj.textareaAValue,
+        watchNum: "0",
+        image: obj.imagesUrlArr,
+        education:obj.educationStr
       },
       success(res) {
         wx.hideLoading()
         wx.showToast({
           title: '添加成功',
-          icon:'none'
+          icon: 'none'
         })
 
         wx.reLaunch({
           url: '../index/index',
         })
         setTimeout(function () {
-          
+
           wx.navigateBack({
 
           })
         }, 1000)
       },
-      fail(err){
+      fail(err) {
         console.log(err)
         wx.hideLoading()
         wx.showToast({
           title: '添加失败',
-          icon:'none'
+          icon: 'none'
         })
       }
     })

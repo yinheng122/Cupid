@@ -9,7 +9,8 @@
     "pages/meetMrRight/meetMrRight",
     "pages/meetResult/meetResult",
     "pages/addPerson/addPerson",
-    "pages/personHistory/personHistory"
+    "pages/personHistory/personHistory",
+    "pages/addNewGuys/addNewGuys"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -3,7 +3,7 @@
     <view class='content' style='top:{{StatusBar}}px;'>广场</view>
   </view>
 </view> -->
-
+<view wx:if="{{hasUserInfo && canIUse}}">
 <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" circular="true" autoplay="false" bindchange="cardSwiper">
   <swiper-item wx:for="{{3}}" wx:key class="{{cardCur==index?'cur':''}}" wx:for-item="item" wx:for-index="index" bindtap = 'click'>
     <image class='bg-img shadow-blur ' mode = 'aspectFill' src='/images/banar.gif' id='{{index}}' bindtap='meetMrRightAct'>
@@ -20,7 +20,12 @@
   option="{{brick_option}}"
   bind:tapCard="tapCard"
 />
-
+</view>
+<view wx:else class='loginView bg-gray' style='height:{{windowHeight}}rpx'>
+  <image class='loginImage round' src='/images/Cupid.jpg'></image>
+  <text class='text-grey text-xl' style='margin-top:15px;'>红娘丘比特需要您登录~</text>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-red lg shadow' style='margin-top:15px;'> 登录</button>
+</view>
 <!-- <view class="cu-card  case {{isCard?'no-card':''}} bg-gray">
   <view wx:for="{{dataArr}}" wx:key class="cu-item shadow" style='height:250px;' wx:for-item="item" wx:for-index="idx" bindtap='personDetailAct' id='{{item._id}}'>
     <view class='image' style='height:180px'>
