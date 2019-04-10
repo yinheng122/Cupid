@@ -6,7 +6,7 @@
 <view wx:if="{{hasUserInfo && canIUse}}">
 <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" circular="true" autoplay="false" bindchange="cardSwiper">
   <swiper-item wx:for="{{3}}" wx:key class="{{cardCur==index?'cur':''}}" wx:for-item="item" wx:for-index="index" bindtap = 'click'>
-    <image class='bg-img shadow-blur ' mode = 'aspectFill' src='/images/banar.gif' id='{{index}}' bindtap='meetMrRightAct'>
+    <image class='bg-img shadow-blur ' mode = 'aspectFill' src='/images/bannar.gif' id='{{index}}' bindtap='meetMrRightAct'>
     <view class='bg-shadeBottom bannarTitle'>
         <view class='padding-left-sm'>Meet Mr Right——找到那个属于他的她</view>
       </view>

@@ -19,6 +19,12 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    wx.cloud.callFunction({
+      name: 'getUserFavor',
+      complete: res => {
+        favorArr = res.result.userFavor
+      }
+    })
     var personID = options.ID;
     personIDStr = personID
     const db = wx.cloud.database()

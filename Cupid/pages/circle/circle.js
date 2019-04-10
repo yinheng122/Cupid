@@ -2,6 +2,7 @@
 
 //获取应用实例
 const app = getApp()
+var userOpenId
 Page({
 
   /**
@@ -195,6 +196,37 @@ Page({
     wx.navigateTo({
       url: '/pages/publish/publish?ID=' + e.currentTarget.id,
     })
-  }
+  },
 
+  wechatMessage(e){
+    userOpenId = e.currentTarget.id
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+
+  formSubmit(e){
+    console.log(e)
+    wx.cloud.callFunction({
+      name: 'sendMessage',
+      data: {
+        openid: userOpenId,
+        formid: e.detail.formId,
+      },
+      complete: res => {
+        wx.showToast({
+          title: '发送成功',
+        })
+        this.setData({
+          modalName: null
+        })
+      }
+    })
+  }
 })

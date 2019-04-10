@@ -1,4 +1,4 @@
-<view class = 'add_backView {{backgroudColor}}' style='height:{{screenHeight}}rpx'>
+<view class = 'add_backView {{backgroudColor}}'>
   <view class="flex padding align-center justify-between">
       <image class="cu-avatar round add_avatar bg-white" src = '{{avatarUrl}}' bindtap='addAvatarAct'></image>
       

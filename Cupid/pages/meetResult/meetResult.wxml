@@ -1,4 +1,23 @@
-<image src='/images/loading.gif' mode = 'widthFix' class='meet_backImage'></image>
-<view class='flex justify-center text-xxl' style='width:100%; margin-top:50px;'>
-  <text class='icon-wefill text-red'>正在帮你匹配心仪的对象...</text>
+<view wx:if = '{{haveSearched == false}}'>
+  <image src='{{noticePic}}' mode = 'widthFix' class='meet_backImage'></image>
+  <view class='flex justify-center text-xxl' style='width:100%; margin-top:50px;'>
+    <text class='icon-wefill text-red'>{{noticeWord}}</text>
+  </view>
+</view>
+
+
+<view class="cu-list menu menu-avatar" wx:else>
+  <view class="cu-item"  wx:for = '{{dataArr}}' wx:for-item="item" wx:key bindtap='toDetailAct' id='{{item._id}}'>
+    <image class="cu-avatar round lg" src='{{item.avatar}}'></image>
+    <view class='content'>
+      <view class='text-grey'>{{item.name}}</view>
+      <view class='text-gray text-sm'>
+        年龄:{{item.age}}岁</view>
+    </view>
+    <view class='action'>
+      <text wx:if='{{item.sex == "男"}}' class='icon-male text-blue'></text>
+      <text wx:else class='icon-female text-red'></text>
+    </view>
+  </view>
+  
 </view>
