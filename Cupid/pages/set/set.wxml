@@ -1,0 +1,3 @@
+<form bindsubmit = 'formSubmit' report-submit = 'true'>
+<button formType="submit">点击开启消息推送</button>
+</form>

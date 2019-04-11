@@ -9,10 +9,11 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.2",
+	"libVersion": "2.6.5",
 	"appid": "wxd4b4b18dadaa34f8",
 	"projectname": "红娘丘比特",
 	"debugOptions": {
@@ -20,6 +21,13 @@
 	},
 	"isGameTourist": false,
 	"cloudfunctionRoot": "cloud-functions/",
+	"permissions": {
+		"openapi": [
+			"templateMessage.send"
+		]
+	},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

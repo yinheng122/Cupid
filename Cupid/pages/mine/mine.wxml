@@ -31,7 +31,7 @@
     </button>
   </view>
   <view class="cu-item arrow">
-    <button class='cu-btn content' bindtap="showQrcode">
+    <button class='cu-btn content' bindtap="setAct">
       <text class='icon-settings text-red'></text>
       <text class='text-grey'>功能设置</text>
     </button>

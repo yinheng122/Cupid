@@ -9,7 +9,8 @@
     "pages/meetMrRight/meetMrRight",
     "pages/meetResult/meetResult",
     "pages/personHistory/personHistory",
-    "pages/addNewGuys/addNewGuys"
+    "pages/addNewGuys/addNewGuys",
+    "pages/set/set"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -38,5 +39,6 @@
       "version": "0.2.0",
       "provider": "wx3c042630f3cdc175"
     }
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

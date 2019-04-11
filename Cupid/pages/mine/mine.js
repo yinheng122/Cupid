@@ -134,5 +134,11 @@ Page({
     wx.navigateTo({
       url: '/pages/personHistory/personHistory',
     })
+  },
+
+  setAct(){
+    wx.navigateTo({
+      url: '/pages/set/set',
+    })
   }
 })

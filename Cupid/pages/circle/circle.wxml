@@ -47,9 +47,17 @@
     <form bindsubmit = 'formSubmit' report-submit = 'true'>
       <view class="cu-form-group margin-top">
       <view class='title'>信息</view>
-      <input placeholder="请简要填写您要发送的信息" class='radius' name='input'></input>
+      <input placeholder="请简要填写您要发送的信息" class='radius' name='input' bindblur='messageContentInput'></input>
       </view>
-      <button formType="submit">发送模板消息</button>
+      <view class="cu-form-group margin-top">
+      <view class='title'>电话</view>
+      <input placeholder="请填写您的联系电话(可不填)" class='radius' name='input' bindblur='phoneNumInput'></input>
+      </view>
+      <view class="cu-form-group margin-top">
+      <view class='title'>微信</view>
+      <input placeholder="请填写您的微信号(可不填)" class='radius' name='input' bindblur='wechatInput'></input>
+      </view>
+      <button formType="submit">发送消息</button>
     </form>
     
   </view>

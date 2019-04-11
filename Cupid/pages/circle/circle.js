@@ -1,8 +1,12 @@
 // pages/circle/circle.js
 
 //获取应用实例
+var util = require('../../utils/util.js')
 const app = getApp()
 var userOpenId
+var phoneNum = '***'
+var wechat = '***'
+var content = ''
 Page({
 
   /**
@@ -212,21 +216,60 @@ Page({
   },
 
   formSubmit(e){
-    console.log(e)
+    console.log(userOpenId)
+    if(content.length <= 0){
+      wx.showToast({
+        title: '请填写您要发送的信息',
+        icon:'none'
+      })
+      return
+    }
+    var that = this
+    wx.showLoading({
+      title: '发送中',
+    })
+    let createTime = util.formatTime(new Date())
     wx.cloud.callFunction({
       name: 'sendMessage',
       data: {
         openid: userOpenId,
         formid: e.detail.formId,
+        time:createTime,
+        name: app.globalData.userInfo.nickName,
+        wechat:wechat,
+        phone:phoneNum,
+        content:content
       },
-      complete: res => {
-        wx.showToast({
+      success: res => {
+        wx.hideLoading()
+        console.warn('[云函数] [openapi] templateMessage.send 调用成功：', res)
+        wx.showModal({
           title: '发送成功',
+          content: '对方将会收到您的信息',
+          showCancel: false,
         })
-        this.setData({
-          modalName: null
+        that.hideModal("hide")
+      },
+      fail: err => {
+        wx.hideLoading()
+        wx.showToast({
+          icon: 'none',
+          title: '调用失败',
         })
+        console.error('[云函数] [openapi] templateMessage.send 调用失败：', err)
       }
     })
+  },
+
+  phoneNumInput(e){
+    phoneNum = e.detail.value
+  },
+
+  wechatInput(e){
+    wechat = e.detail.value
+  },
+
+  messageContentInput(e){
+    content = e.detail.value
   }
 })

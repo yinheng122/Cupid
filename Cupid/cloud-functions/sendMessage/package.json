@@ -10,5 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "wx-server-sdk": "latest"
+  },
+  "permissions": {
+    "openapi": [
+      "templateMessage.send"
+    ]
   }
 }
