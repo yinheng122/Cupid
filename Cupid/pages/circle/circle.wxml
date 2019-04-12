@@ -15,7 +15,7 @@
             <view class='text-gray text-sm'><text wx:if='{{item.level == "管理员"}}' class='icon-crownfill text-yellow'></text><text wx:else class='icon-medalfill text-yellow'></text>{{item.level}}</view>
           </view>
           <view class='action'>
-            <text class='icon-weixin text-green text-xxl' style='margin-right:10px;' bindtap='wechatMessage' id='{{item._openid}}' data-target="Modal">
+            <text class='icon-weixin text-green text-xxl' style='margin-right:10px;' bindtap='wechatMessage' id='{{item.formId}}' data-openid='{{item._openid}}' data-target="Modal">
             </text>
             <text class='icon-favor text-gray text-xl' wx:if = '{{isFriendArr[index] == "0"}}' bindtap='addFriendAct' id='{{item._id}}'></text>
             <text class='icon-favorfill text-yellow text-xl' wx:else bindtap='deleteFriendAct' id='{{item._id}}'></text>
@@ -44,8 +44,9 @@
         <text class='icon-close text-red'></text>
       </view>
     </view>
-    <form bindsubmit = 'formSubmit' report-submit = 'true'>
-      <view class="cu-form-group margin-top">
+    <!-- <form bindsubmit = 'formSubmit' report-submit = 'false'> -->
+    <view>
+    <view class="cu-form-group margin-top">
       <view class='title'>信息</view>
       <input placeholder="请简要填写您要发送的信息" class='radius' name='input' bindblur='messageContentInput'></input>
       </view>
@@ -57,8 +58,9 @@
       <view class='title'>微信</view>
       <input placeholder="请填写您的微信号(可不填)" class='radius' name='input' bindblur='wechatInput'></input>
       </view>
-      <button formType="submit">发送消息</button>
-    </form>
-    
+      <button  bindtap='formSubmit'>发送消息</button>
+    </view>
+      <!-- formType="submit" -->
+    <!-- </form> -->
   </view>
 </view>

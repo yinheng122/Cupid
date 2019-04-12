@@ -4,6 +4,7 @@
 var util = require('../../utils/util.js')
 const app = getApp()
 var userOpenId
+var userFormId
 var phoneNum = '***'
 var wechat = '***'
 var content = ''
@@ -88,7 +89,9 @@ Page({
     var that = this
     const db = wx.cloud.database()
     const accountDB = db.collection('account')
-    accountDB.get({
+    accountDB.where({
+      notInCircle:false
+    }).get({
       success: function (res) {
         console.log(res)
         that.setData({
@@ -203,7 +206,9 @@ Page({
   },
 
   wechatMessage(e){
-    userOpenId = e.currentTarget.id
+    userFormId = e.currentTarget.id
+    userOpenId = e.target.dataset.openid
+    console.log(e)
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
@@ -216,7 +221,6 @@ Page({
   },
 
   formSubmit(e){
-    console.log(userOpenId)
     if(content.length <= 0){
       wx.showToast({
         title: '请填写您要发送的信息',
@@ -229,11 +233,21 @@ Page({
       title: '发送中',
     })
     let createTime = util.formatTime(new Date())
+    var parameters = {
+      'openid': userOpenId,
+      'formid': userFormId,
+      'time': createTime,
+      'name': app.globalData.userInfo.nickName,
+      'wechat': wechat,
+      'phone': phoneNum,
+      'content': content
+    }
+    console.log(parameters)
     wx.cloud.callFunction({
       name: 'sendMessage',
       data: {
         openid: userOpenId,
-        formid: e.detail.formId,
+        formid: userFormId,
         time:createTime,
         name: app.globalData.userInfo.nickName,
         wechat:wechat,
@@ -242,7 +256,6 @@ Page({
       },
       success: res => {
         wx.hideLoading()
-        console.warn('[云函数] [openapi] templateMessage.send 调用成功：', res)
         wx.showModal({
           title: '发送成功',
           content: '对方将会收到您的信息',

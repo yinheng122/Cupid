@@ -15,12 +15,12 @@ Page({
     sum: 1,
     dataSet:[],
     brick_option: { defaultExpandStatus: true, fontColor: "#232323"},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
 
   getUserInfo: function (e) {
+    var that = this
     app.globalData.userInfo = e.detail.userInfo
+    that.getUserUniconId()
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true,
@@ -30,32 +30,37 @@ Page({
 
   onLoad: function () {
     var that = this
-    that.getUserUniconId()
     this.setData({
       windowHeight: app.globalData.windowHeight + 125,
       screenHeight: app.globalData.screenHeight + 125
     })
+    console.log(app.globalData.userInfo)
     if (app.globalData.userInfo) {
-      
+      that.getUserUniconId()
       console.log(app.globalData.userInfo)
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
     } else if (this.data.canIUse){
+      console.log('进啦2')
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
+ 
         console.log(res.userInfo)
+        console.log('进啦2-2')
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
       }
     } else {
+      console.log('进啦3')
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
+          that.getUserUniconId()
           app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,
@@ -70,14 +75,14 @@ Page({
 
   },
 
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
+  // getUserInfo: function(e) {
+  //   console.log(e)
+  //   app.globalData.userInfo = e.detail.userInfo
+  //   this.setData({
+  //     userInfo: e.detail.userInfo,
+  //     hasUserInfo: true
+  //   })
+  // },
 
 getUserUniconId(){
   wx.cloud.callFunction({
@@ -92,6 +97,7 @@ getUserUniconId(){
         userId: uniconId,
       }).get({
         success(res) {
+          console.log(res)
           if(res.data.length<=0){
             accountDB.add({
               data: {
@@ -100,7 +106,10 @@ getUserUniconId(){
                 userId: uniconId,
                 favor: [],
                 friend:[],
-                level:"新人红娘"
+                level:"新人红娘",
+                formId:'00',
+                canPushMessage:false,
+                notInCircle:false,
               },
               success:function(res){
                 wx.cloud.callFunction({

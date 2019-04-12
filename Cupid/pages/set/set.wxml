@@ -1,3 +1,14 @@
-<form bindsubmit = 'formSubmit' report-submit = 'true'>
-<button formType="submit">点击开启消息推送</button>
+<view class="cu-form-group">
+    <view class='title'>点击开启推送</view>
+    <switch class='red sm' checked wx:if = '{{userInfo.canPushMessage == true}}' bindchange='messagePushSwitch'></switch>
+    <switch class='red sm' wx:else  bindchange='messagePushSwitch'></switch>
+</view>
+<view class="cu-form-group">
+    <view class='title'>红娘圈子不可见</view>
+    <switch class='red sm' wx:if = '{{!userInfo.notInCircle}}' bindchange='cannotSeeSwitch'></switch>
+    <switch class='red sm' wx:else checked bindchange='cannotSeeSwitch'></switch>
+</view>
+<view class='text-red' style='margin-top:20px;'>提示：点击获取推送码别人才能推送到你的微信上哟</view>
+<form bindsubmit = 'formSubmit' report-submit = 'true' style='margin-top:5px;'>
+<button formType="submit">获取推送码</button>
 </form>

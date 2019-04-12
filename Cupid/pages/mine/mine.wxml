@@ -31,6 +31,12 @@
     </button>
   </view>
   <view class="cu-item arrow">
+    <button class='cu-btn content' open-type='feedback'>
+      <text class='icon-service text-red'></text>
+      <text class='text-grey'>联系客服</text>
+    </button>
+  </view>
+  <view class="cu-item arrow">
     <button class='cu-btn content' bindtap="setAct">
       <text class='icon-settings text-red'></text>
       <text class='text-grey'>功能设置</text>
@@ -42,6 +48,7 @@
       <text class='text-grey'>意见反馈</text>
     </button>
   </view>
+
 </view>
 </view>
 
