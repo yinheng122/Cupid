@@ -39,5 +39,6 @@
       "version": "0.2.0",
       "provider": "wx3c042630f3cdc175"
     }
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

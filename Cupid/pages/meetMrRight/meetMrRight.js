@@ -1,6 +1,6 @@
 // pages/meetMrRight/meetMrRight.js
-var age
-var height
+var age = ''
+var height = ''
 
 Page({
 
@@ -90,17 +90,23 @@ Page({
     if (age.length == 0) {
       wx.showToast({
         title: '请填写搜索人的年龄',
+        icon:'none'
       })
+      return
     }
     if(that.data.sex.length == 0){
       wx.showToast({
         title: '请填写搜索人的性别',
+        icon: 'none'
       })
+      return
     }
     if(height.length == 0){
       wx.showToast({
         title: '请填写搜索人的身高',
+        icon: 'none'
       })
+      return
     }
     wx.navigateTo({
       url: '/pages/meetResult/meetResult?sex='+that.data.sex + '&age=' + age + '&height=' + height,

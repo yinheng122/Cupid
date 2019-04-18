@@ -31,7 +31,7 @@
     </button>
   </view>
   <view class="cu-item arrow">
-    <button class='cu-btn content' open-type='feedback'>
+    <button class='cu-btn content' open-type='contact'>
       <text class='icon-service text-red'></text>
       <text class='text-grey'>联系客服</text>
     </button>

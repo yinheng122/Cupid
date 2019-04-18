@@ -14,21 +14,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var openID = app.globalData.userOpenID
     var that = this
-    const db = wx.cloud.database()
-    const personListDB = db.collection('personList')
-    console.log(openID)
-    personListDB.where({
-      _openid: openID
-    }).get({
-      success: function (res) {
-        console.log(res)
-        that.setData({
-          dataArr: res.data
-        })
-      }
-    })
+    that.personListNetRequest()
   },
 
   /**
@@ -80,9 +67,55 @@ Page({
 
   },
 
+  personListNetRequest(){
+    var openID = app.globalData.userOpenID
+    var that = this
+    const db = wx.cloud.database()
+    const personListDB = db.collection('personList')
+    console.log(openID)
+    personListDB.where({
+      _openid: openID
+    }).get({
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          dataArr: res.data
+        })
+      }
+    })
+  },
+
   personDetailAct(e){
     wx.navigateTo({
       url: '/pages/personDetail/personDetail?ID='+ e.currentTarget.id,
+    })
+  },
+
+  deleteHistory(e){
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '是否确认删除此条消息',
+      success(res) {
+        if (res.confirm) {
+          that.deleteHistoryNetRequest(e)
+        } else if (res.cancel) {
+          
+        }
+      }
+    })
+    
+  },
+
+  deleteHistoryNetRequest(e){
+    var that = this
+    const db = wx.cloud.database()
+    const personListDB = db.collection('personList')
+    console.log(e)
+    personListDB.doc(e.currentTarget.id).remove({
+      success(res) {
+        that.personListNetRequest()
+      }
     })
   }
 })
