@@ -315,7 +315,8 @@ Page({
     var obj = that.data
     const db = wx.cloud.database()
     const personListDB = db.collection('personList')
-    let createTime = util.formatDate(new Date())
+    let createTime = util.formatTime(new Date())
+    //let createTime = new Date()
     personListDB.add({
       // data 字段表示需新增的 JSON 数据
       data: {
