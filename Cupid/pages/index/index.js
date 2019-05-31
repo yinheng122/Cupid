@@ -167,9 +167,12 @@ getUserUniconId(){
     var that = this
     var obj = that.data
     if (num == 1) {
-      obj.dataArr.splice(0, obj.dataArr.length);
-      obj.dataSet.splice(0, obj.dataSet.length);
+      // obj.dataArr.splice(0, obj.dataArr.length);
+      // obj.dataSet.splice(0, obj.dataSet.length);
+      obj.dataArr = []
+      obj.dataSet = []
     }
+    console.log(num)
     const db = wx.cloud.database()
     const personListDB = db.collection('personList')
     personListDB.skip((num - 1) * 10).limit(10).get({
@@ -180,8 +183,8 @@ getUserUniconId(){
           obj.dataArr.push(data)
         }
         console.log(obj.dataArr)
-        for(var i=0; i < obj.dataArr.length; i++){
-          var personInfo = obj.dataArr[i]
+        for (var i = 0; i < res.data.length; i++){
+          var personInfo = res.data[i]
           var backgroundColorStr = '#FD5A5D'
           if(personInfo.sex == '男'){
             backgroundColorStr = '#B5ECFF'
@@ -209,14 +212,14 @@ getUserUniconId(){
           dataArr: obj.dataArr,
           dataSet: obj.dataSet
         })
-        if (res.data.length < 10) {
-          // wx.showToast({
-          //   title: '数据加载完毕',
-          // })
-          if (sum != 1 && res.data.length < 10) {
-            sum = sum - 1
-          }
-        }
+        // if (res.data.length < 10) {
+        //   // wx.showToast({
+        //   //   title: '数据加载完毕',
+        //   // })
+        //   if (sum != 1 && res.data.length < 10) {
+        //     sum = sum - 1
+        //   }
+        // }
         if (sum == 1) {
           wx.stopPullDownRefresh()
         }
@@ -230,6 +233,9 @@ getUserUniconId(){
    */
   onPullDownRefresh: function () {
     var that = this
+    that.setData({
+      sum:1
+    })
     that.getPersonListNetRequest(1)
   },
   
@@ -244,6 +250,9 @@ getUserUniconId(){
     } else {
       sum = sum + 1
     }
+    that.setData({
+      sum:sum
+    })
     that.getPersonListNetRequest(sum)
   },
 
